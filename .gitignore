@@ -1,0 +1,65 @@
+# ==========================================
+# ROS 2 Workspace
+# ==========================================
+# Ignorar carpetas de compilación de ROS 2 (por si alguna vez compilas desde aquí)
+build/
+install/
+log/
+
+# ==========================================
+# C/C++ y CMake Build Artifacts
+# ==========================================
+CMakeCache.txt
+CMakeFiles/
+Makefile
+cmake_install.cmake
+install_manifest.txt
+*.o
+*.so
+*.a
+*.dylib
+*.dll
+*.class
+
+# ==========================================
+# Entornos de Desarrollo (IDEs) y Editores
+# ==========================================
+# VS Code
+.vscode/
+*.code-workspace
+
+# CLion / IntelliJ
+.idea/
+cmake-build-*/
+
+# Vim / Emacs
+*.swp
+*.swo
+*~
+\#*\#
+
+# ==========================================
+# Archivos del Sistema Operativo
+# ==========================================
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# ==========================================
+# Python
+# ==========================================
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+.env/
