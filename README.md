@@ -30,7 +30,7 @@ No es necesario compilar todo el repositorio de Unitree, solo su espacio de trab
 
 ```
 # Clonar el repositorio oficial en tu directorio home (usa nuestro fork)
-git clone [https://github.com/UAI-BIOARABA/unitree_ros2](https://github.com/UAI-BIOARABA/unitree_ros2) ~/unitree_ros2
+git clone https://github.com/UAI-BIOARABA/unitree_ros2
 
 # Compilar los paquetes de mensajes
 cd ~/unitree_ros2/cyclonedds_ws
@@ -46,8 +46,8 @@ Una vez tienes la base de Unitree, puedes clonar y compilar este entorno de trab
 mkdir -p ~/ros2_ws/src
 cd ~/ros2_ws/src
 
-# Clonar este repositorio
-git clone [https://github.com/UAI-BIOARABA/saaki-ros2-examples.git](https://github.com/UAI-BIOARABA/saaki-ros2-examples.git) saaki_ros2_examples
+# Clonar este repositorio (le ponemos '_' en vez de '-' por estandares de ROS2)
+git clone https://github.com/UAI-BIOARABA/saaki-ros2-examples.git saaki_ros2_examples
 
 # Ir a la raíz del workspace
 cd ~/ros2_ws
@@ -71,7 +71,7 @@ Para que ROS 2 descubra al robot, tu PC debe estar en la misma subred y usar Cyc
 
    - Máscara: 255.255.255.0
 
-### 3. Edita el script de configuración oficial (~/unitree_ros2/setup.sh). Debe quedar algo así:
+### 3. Edita el script de configuración oficial (~/unitree_ros2/setup.sh). Debe quedar algo así (cambia enp44s0 por el nombre de tu interfaz de red):
 
 ```
 #!/bin/bash
@@ -137,6 +137,6 @@ Puedes ejecutar cualquiera de los siguientes nodos usando el comando estándar d
 
 ## 🧑‍💻 Autores
 
-- **Código base de varios ejemplos:** [Unitree Robotics](https://github.com/unitreerobotics) &rarr; [unitree_ros2](https://github.com/unitreerobotics/unitree_ros2)
+- **Código base de los ejemplos:** [Unitree Robotics](https://github.com/unitreerobotics) &rarr; [unitree_ros2](https://github.com/unitreerobotics/unitree_ros2)
 - **Project Manager:** [Juan Fernández](https://github.com/jfbioaraba)
 - **Lead Developer:** [Andoni González](https://github.com/andoni92)
