@@ -1,4 +1,15 @@
-# Saaki ROS 2 Examples (Unitree G1)
+<div align="center">
+
+<h1> Saaki ROS 2 Examples - Unitree G1 </h1>
+
+[![ROS 2 Humble](https://img.shields.io/badge/ROS2-Humble-22314E?logo=ros&logoColor=white)](https://docs.ros.org/en/humble/index.html)
+[![Ubuntu 22.04](https://img.shields.io/badge/Ubuntu-22.04-E95420?logo=ubuntu&logoColor=white)](https://releases.ubuntu.com/22.04/)
+[![License: CC-BY-4.0](https://img.shields.io/badge/License-CC--BY--4.0-lightgrey.svg)](LICENSE.md)
+[![Status: Tested on G1](https://img.shields.io/badge/Status-Tested%20on%20Unitree%20G1-success)](#ejecucion-y-verificacion)
+
+</div>
+
+## 📖 Descripción
 
 Este repositorio contiene un paquete de ROS 2 (`saaki_ros2_examples`) optimizado y configurado exclusivamente para controlar y monitorizar el robot humanoide **Unitree G1**.
 
@@ -28,7 +39,7 @@ sudo apt install ros-humble-rmw-cyclonedds-cpp ros-humble-rosidl-generator-dds-i
 ### 1.2. Clonar y compilar los mensajes oficiales
 No es necesario compilar todo el repositorio de Unitree, solo su espacio de trabajo de CycloneDDS:
 
-```
+```bash
 # Clonar el repositorio oficial en tu directorio home (usa nuestro fork)
 git clone https://github.com/UAI-BIOARABA/unitree_ros2
 
@@ -37,11 +48,11 @@ cd ~/unitree_ros2/cyclonedds_ws
 colcon build
 ```
 
-## 🚀 2. Instalación de este Paquete (Saaki Examples)
+## 🎁 2. Instalación de este Paquete (Saaki Examples)
 
 Una vez tienes la base de Unitree, puedes clonar y compilar este entorno de trabajo.
 
-```
+```bash
 # Crear tu workspace si no lo tienes
 mkdir -p ~/ros2_ws/src
 cd ~/ros2_ws/src
@@ -73,7 +84,7 @@ Para que ROS 2 descubra al robot, tu PC debe estar en la misma subred y usar Cyc
 
 ### 3. Edita el script de configuración oficial (~/unitree_ros2/setup.sh). Debe quedar algo así (cambia enp44s0 por el nombre de tu interfaz de red):
 
-```
+```sh
 #!/bin/bash
 echo "Setup unitree ros2 environment"
 source /opt/ros/humble/setup.bash
@@ -84,11 +95,11 @@ export CYCLONEDDS_URI='<CycloneDDS><Domain><General><Interfaces>
                         </Interfaces></General></Domain></CycloneDDS>'
 ```
 
-## 🏃‍♂️ 4. Cómo Ejecutar los Nodos
+## 🚀 4. Ejecución y verificación
 
 Cada vez que abras una terminal nueva para trabajar con el robot, debes cargar ambos entornos en este orden:
 
-```
+```bash
 # 1. Cargar dependencias y configuración de red de Unitree
 source ~/unitree_ros2/setup.sh
 
