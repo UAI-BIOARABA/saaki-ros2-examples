@@ -1,19 +1,27 @@
 <div align="center">
 
-<h1> Saaki ROS 2 Examples - Unitree G1 </h1>
+<h1> Ejemplos de ROS2 para Saaki - Unitree G1 </h1>
+
+<p>
+  <a href="README.md">English</a> |
+  <a href="README_es.md">Español</a>
+</p>
 
 [![ROS 2 Humble](https://img.shields.io/badge/ROS2-Humble-22314E?logo=ros&logoColor=white)](https://docs.ros.org/en/humble/index.html)
 [![Ubuntu 22.04](https://img.shields.io/badge/Ubuntu-22.04-E95420?logo=ubuntu&logoColor=white)](https://releases.ubuntu.com/22.04/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-[![Status: Tested on G1](https://img.shields.io/badge/Status-Tested%20on%20Unitree%20G1-success)](#ejecucion-y-verificacion)
+[![C++17](https://img.shields.io/badge/C%2B%2B-17-00599C?logo=c%2B%2B&logoColor=white)](https://isocpp.org/)
 
+[![Robot: Unitree G1](https://img.shields.io/badge/Robot-Unitree%20G1-0A66C2)](https://www.unitree.com/g1)
+[![Status: Tested on G1](https://img.shields.io/badge/Status-Tested%20on%20Real%20Hardware-success)](#ejecución-y-verificacion)
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 </div>
 
 ## 📖 Descripción
 
 Este repositorio contiene un paquete de ROS 2 (`saaki_ros2_examples`) optimizado y configurado exclusivamente para controlar y monitorizar el robot humanoide **Unitree G1**.
 
-**Créditos y Origen:** El código fuente de los ejemplos y la estructura base pertenecen a [Unitree Robotics](https://github.com/unitreerobotics/unitree_ros2). Este repositorio es una *adaptación* en el que se ha limpiado el código eliminando los scripts de otros modelos (Go2, B2, etc.) y se ha reestructurado el `CMakeLists.txt` para cumplir con los estándares de instalación de ejecutables de ROS 2 (permitiendo el uso nativo de `ros2 run`). Adicionalmente iremos creando scripts propios a modo de ejemplo sin eliminar los originales.
+**Créditos y Origen:** El código fuente de los ejemplos y la estructura base pertenecen a [Unitree Robotics](https://github.com/unitreerobotics/unitree_ros2). Este repositorio es una *adaptación* en el que se ha limpiado el código eliminando los scripts de otros modelos (Go2, B2, etc.) y se ha reestructurado el `CMakeLists.txt` para cumplir con los estándares de instalación de ejecutables de ROS 2 (permitiendo el uso nativo de `ros2 run`). Adicionalmente, podremos ir creando scripts propios a modo de ejemplo sin eliminar los originales.
 
 ---
 
