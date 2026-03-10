@@ -56,6 +56,8 @@ cd ~/unitree_ros2/cyclonedds_ws
 colcon build
 ```
 
+---
+
 ## 🎁 2. Instalación de este Paquete (Saaki Examples)
 
 Una vez tienes la base de Unitree, puedes clonar y compilar este entorno de trabajo.
@@ -77,6 +79,8 @@ source ~/unitree_ros2/setup.sh
 # Compilar este paquete
 colcon build --symlink-install
 ```
+
+---
 
 ## 🌐 3. Configuración de Red (Conexión al Robot)
 
@@ -102,6 +106,8 @@ export CYCLONEDDS_URI='<CycloneDDS><Domain><General><Interfaces>
                             <NetworkInterface name="enp44s0" priority="default" multicast="default" />
                         </Interfaces></General></Domain></CycloneDDS>'
 ```
+
+---
 
 ## 🚀 4. Ejecución y verificación
 
@@ -161,7 +167,8 @@ Puedes ejecutar cualquiera de los siguientes nodos usando el comando estándar d
 - **Lead Developer:** [Andoni González](https://github.com/andoni92)
 
 ---
-## Disclaimer
+
+## Descargo de responsabilidad
 
 Este software y los materiales asociados se proporcionan “tal cual”, sin garantías de ningún tipo, ni expresas ni implícitas, incluyendo —pero no limitándose a— garantías de comercialización, idoneidad para un propósito particular o ausencia de errores.
 
