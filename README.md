@@ -1,88 +1,100 @@
 <div align="center">
 
-<h1> Saaki ROS 2 Examples - Unitree G1 </h1>
+<h1> ROS2 Examples for Saaki - Unitree G1 </h1>
+
+<p>
+  <a href="README.md">English</a> |
+  <a href="README_es.md">Español</a>
+</p>
 
 [![ROS 2 Humble](https://img.shields.io/badge/ROS2-Humble-22314E?logo=ros&logoColor=white)](https://docs.ros.org/en/humble/index.html)
 [![Ubuntu 22.04](https://img.shields.io/badge/Ubuntu-22.04-E95420?logo=ubuntu&logoColor=white)](https://releases.ubuntu.com/22.04/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-[![Status: Tested on G1](https://img.shields.io/badge/Status-Tested%20on%20Unitree%20G1-success)](#ejecucion-y-verificacion)
+[![C++17](https://img.shields.io/badge/C%2B%2B-17-00599C?logo=c%2B%2B&logoColor=white)](https://isocpp.org/)
 
+[![Robot: Unitree G1](https://img.shields.io/badge/Robot-Unitree%20G1-0A66C2)](https://www.unitree.com/g1)
+[![Status: Tested on G1](https://img.shields.io/badge/Status-Tested%20on%20Real%20Hardware-success)](#execution-and-verification)
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 </div>
 
-## 📖 Descripción
+## 📖 Description
 
-Este repositorio contiene un paquete de ROS 2 (`saaki_ros2_examples`) optimizado y configurado exclusivamente para controlar y monitorizar el robot humanoide **Unitree G1**.
+This repository contains a ROS 2 package (`saaki_ros2_examples`) optimized and configured exclusively to control and monitor the **Unitree G1** humanoid robot.
 
-**Créditos y Origen:** El código fuente de los ejemplos y la estructura base pertenecen a [Unitree Robotics](https://github.com/unitreerobotics/unitree_ros2). Este repositorio es una *adaptación* en el que se ha limpiado el código eliminando los scripts de otros modelos (Go2, B2, etc.) y se ha reestructurado el `CMakeLists.txt` para cumplir con los estándares de instalación de ejecutables de ROS 2 (permitiendo el uso nativo de `ros2 run`). Adicionalmente iremos creando scripts propios a modo de ejemplo sin eliminar los originales.
-
----
-
-## 🛠️ Requisitos Previos
-
-* **Sistema Operativo:** Ubuntu 22.04 LTS
-* **Middleware ROS:** ROS 2 Humble
-* **Hardware:** Robot Unitree G1 (conexión por cable Ethernet)
+**Credits and Origin:** The example source code and base structure belong to [Unitree Robotics](https://github.com/unitreerobotics/unitree_ros2). This repository is an *adaptation* where the code has been cleaned up by removing scripts from other models (Go2, B2, etc.) and the `CMakeLists.txt` has been restructured to comply with ROS 2 executable installation standards (enabling native use of `ros2 run`). Additionally, we can create custom example scripts while preserving the original ones.
 
 ---
 
-## 📦 1. Instalación Base (Dependencias de Unitree)
+## 🛠️ Prerequisites
 
-Dado que este paquete depende de los mensajes oficiales del robot (`unitree_go`, `unitree_hg`, `unitree_api`), **es obligatorio** instalar y compilar el repositorio oficial de Unitree como capa base ("underlay") antes de compilar este repositorio.
+* **Operating System:** Ubuntu 22.04 LTS
+* **ROS Middleware:** ROS 2 Humble
+* **Hardware:** Unitree G1 Robot (Ethernet cable connection)
 
-### 1.1. Instalar CycloneDDS
+---
 
-El robot se comunica a través de CycloneDDS. En ROS 2 Humble, basta con instalar los binarios del sistema:
+## 📦 1. Base Installation (Unitree Dependencies)
+
+Since this package depends on the official robot messages (`unitree_go`, `unitree_hg`, `unitree_api`), it is **mandatory** to install and compile the official Unitree repository as a base layer ("underlay") before compiling this repository.
+
+### 1.1. Install CycloneDDS
+
+The robot communicates through CycloneDDS. In ROS 2 Humble, just install the system binaries:
 ```bash
 sudo apt install ros-humble-rmw-cyclonedds-cpp ros-humble-rosidl-generator-dds-idl libyaml-cpp-dev
 ```
 
-### 1.2. Clonar y compilar los mensajes oficiales
-No es necesario compilar todo el repositorio de Unitree, solo su espacio de trabajo de CycloneDDS:
+### 1.2. Clone and compile the official messages
+You don't need to compile the entire Unitree repository, just its CycloneDDS workspace:
 
 ```bash
-# Clonar el repositorio oficial en tu directorio home (usa nuestro fork)
+# Clone the official repository in your home directory (use our fork)
 git clone https://github.com/UAI-BIOARABA/unitree_ros2
 
-# Compilar los paquetes de mensajes
+# Compile the message packages
 cd ~/unitree_ros2/cyclonedds_ws
 colcon build
 ```
 
-## 🎁 2. Instalación de este Paquete (Saaki Examples)
+---
 
-Una vez tienes la base de Unitree, puedes clonar y compilar este entorno de trabajo.
+## 🎁 2. Installation of this Package (Saaki Examples)
+
+Once you have the Unitree base, you can clone and compile this workspace.
 
 ```bash
-# Crear tu workspace si no lo tienes
+# Create your workspace if you don't have it
 mkdir -p ~/ros2_ws/src
 cd ~/ros2_ws/src
 
-# Clonar este repositorio (le ponemos '_' en vez de '-' por estandares de ROS2)
+# Clone this repository (we use '_' instead of '-' following ROS2 standards)
 git clone https://github.com/UAI-BIOARABA/saaki-ros2-examples.git saaki_ros2_examples
 
-# Ir a la raíz del workspace
+# Go to the workspace root
 cd ~/ros2_ws
 
-# IMPORTANTE: Cargar el entorno de Unitree ANTES de compilar
+# IMPORTANT: Load the Unitree environment BEFORE compiling
 source ~/unitree_ros2/setup.sh
 
-# Compilar este paquete
+# Compile this package
 colcon build --symlink-install
 ```
 
-## 🌐 3. Configuración de Red (Conexión al Robot)
+---
 
-Para que ROS 2 descubra al robot, tu PC debe estar en la misma subred y usar CycloneDDS correctamente.
+## 🌐 3. Network Configuration (Robot Connection)
 
-### 1. Conecta el PC al robot mediante cable Ethernet.
+For ROS 2 to discover the robot, your PC must be on the same subnet and use CycloneDDS correctly.
 
-### 2. Configura una IP estática en tu PC:
+### 1. Connect your PC to the robot via Ethernet cable.
+
+### 2. Configure a static IP on your PC:
 
    - IP: 192.168.123.99
 
-   - Máscara: 255.255.255.0
+   - Netmask: 255.255.255.0
 
-### 3. Edita el script de configuración oficial (~/unitree_ros2/setup.sh). Debe quedar algo así (cambia enp44s0 por el nombre de tu interfaz de red):
+### 3. Edit the official configuration script (~/unitree_ros2/setup.sh). It should look something like this (change enp44s0 to your network interface name):
 
 ```sh
 #!/bin/bash
@@ -95,68 +107,70 @@ export CYCLONEDDS_URI='<CycloneDDS><Domain><General><Interfaces>
                         </Interfaces></General></Domain></CycloneDDS>'
 ```
 
-## 🚀 4. Ejecución y verificación
+---
 
-Cada vez que abras una terminal nueva para trabajar con el robot, debes cargar ambos entornos en este orden:
+## 🚀 4. Execution and Verification
+
+Every time you open a new terminal to work with the robot, you must load both environments in this order:
 
 ```bash
-# 1. Cargar dependencias y configuración de red de Unitree
+# 1. Load Unitree dependencies and network configuration
 source ~/unitree_ros2/setup.sh
 
-# 2. Cargar tu espacio de trabajo
+# 2. Load your workspace
 source ~/ros2_ws/install/setup.bash
 ```
 
-### Nodos Disponibles
-Puedes ejecutar cualquiera de los siguientes nodos usando el comando estándar de ROS 2:
+### Available Nodes
+You can run any of the following nodes using the standard ROS 2 command:
 
-### Lectura de estado:
+### State Reading:
 
-- ros2 run saaki_ros2_examples read_low_state_hg (Lee el estado de bajo nivel de los motores y sensores).
+- ros2 run saaki_ros2_examples read_low_state_hg (Reads the low-level state of motors and sensors).
 
-- ros2 run saaki_ros2_examples read_wireless_controller (Lee los inputs del mando a distancia).
+- ros2 run saaki_ros2_examples read_wireless_controller (Reads the remote control inputs).
 
-### Control del robot (¡Precaución! El robot se moverá):
+### Robot Control (Caution! The robot will move):
 
-- ros2 run saaki_ros2_examples g1_low_level_example (Control directo a bajo nivel).
+- ros2 run saaki_ros2_examples g1_low_level_example (Direct low-level control).
 
-- ros2 run saaki_ros2_examples g1_loco_client_example (Control de locomoción a alto nivel).
+- ros2 run saaki_ros2_examples g1_loco_client_example (High-level locomotion control).
 
-- ros2 run saaki_ros2_examples g1_arm_action_example (Ejemplo de acciones de los brazos).
+- ros2 run saaki_ros2_examples g1_arm_action_example (Example of arm actions).
 
-- ros2 run saaki_ros2_examples g1_audio_client_example (Prueba del sistema de audio).
+- ros2 run saaki_ros2_examples g1_audio_client_example (Audio system test).
 
-*(Ver el código fuente de cada script para más detalles sobre lo que hace cada ejemplo).*
-
----
-
-## ⚠️ Solución de Problemas Comunes
-
-- "No executable found" o "Package not found": Asegúrate de haber hecho source install/setup.bash en la raíz de ros2_ws.
-
-- "CMake Error: Could not find unitree_hg": Olvidaste hacer source ~/unitree_ros2/setup.sh antes de ejecutar colcon build.
-
-- Los tópicos no aparecen (ros2 topic list está vacío):
-
-    1. Comprueba que el firewall de Ubuntu está desactivado (sudo ufw disable).
-
-    2. Verifica que la IP local es 192.168.123.99.
-
-    3. Asegúrate de que no tienes un ROS_DOMAIN_ID configurado que entre en conflicto con el del robot (por defecto el robot usa el ID 0 o ninguno).
+*(See the source code of each script for more details about what each example does).*
 
 ---
 
-## 🧑‍💻 Autores
+## ⚠️ Common Troubleshooting
 
-- **Código base de los ejemplos:** [Unitree Robotics](https://github.com/unitreerobotics) &rarr; [unitree_ros2](https://github.com/unitreerobotics/unitree_ros2)
+- "No executable found" or "Package not found": Make sure you have sourced install/setup.bash in the root of ros2_ws.
+
+- "CMake Error: Could not find unitree_hg": You forgot to run source ~/unitree_ros2/setup.sh before executing colcon build.
+
+- Topics are not appearing (ros2 topic list is empty):
+
+    1. Check that the Ubuntu firewall is disabled (sudo ufw disable).
+
+    2. Verify that your local IP is 192.168.123.99.
+
+    3. Make sure you don't have a ROS_DOMAIN_ID configured that conflicts with the robot's domain ID (by default the robot uses ID 0 or none).
+
+---
+
+## 🧑‍💻 Authors
+
+- **Base code of examples:** [Unitree Robotics](https://github.com/unitreerobotics) &rarr; [unitree_ros2](https://github.com/unitreerobotics/unitree_ros2)
 - **Project Manager:** [Juan Fernández](https://github.com/jfbioaraba)
 - **Lead Developer:** [Andoni González](https://github.com/andoni92)
 
 ---
 ## Disclaimer
 
-Este software y los materiales asociados se proporcionan “tal cual”, sin garantías de ningún tipo, ni expresas ni implícitas, incluyendo —pero no limitándose a— garantías de comercialización, idoneidad para un propósito particular o ausencia de errores.
+This software and associated materials are provided "as is", without warranty of any kind, either express or implied, including but not limited to warranties of merchantability, fitness for a particular purpose, or non-infringement.
 
-Los/as autores/as y Bioaraba – Instituto de Investigación Sanitaria no asumen responsabilidad alguna por el uso, la redistribución o la modificación de este repositorio ni por los posibles daños directos o indirectos derivados de su utilización.
+The authors and Bioaraba – Sanitaria Research Institute assume no responsibility for the use, redistribution, or modification of this repository or for any direct or indirect damages arising from its use.
 
-Este proyecto tiene fines exclusivos de investigación y/o docencia.
+This project is intended exclusively for research and/or educational purposes.
